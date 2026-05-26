@@ -16,7 +16,7 @@ const ManageBranches = ({ selectedNode, refreshTree, onActionComplete }) => {
   const [bulkError, setBulkError] = useState('');
   const [bulkSuccess, setBulkSuccess] = useState('');
 
-  const apiBase = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+  const apiBase = import.meta.env.VITE_API_URL || (import.meta.env.PROD ? '' : 'http://localhost:5000');
 
   // Determine active college context
   const activeCollegeId = selectedNode?.type === 'college' 

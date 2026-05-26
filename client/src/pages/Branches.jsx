@@ -14,7 +14,7 @@ const Branches = () => {
   const collegeName = location.state?.collegeName || 'Selected College';
   const examName = location.state?.examName || 'TS POLYCET';
 
-  const apiBase = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+  const apiBase = import.meta.env.VITE_API_URL || (import.meta.env.PROD ? '' : 'http://localhost:5000');
 
   useEffect(() => {
     const fetchBranches = async () => {

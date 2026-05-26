@@ -8,7 +8,7 @@ const UploadPDF = ({ selectedNode, refreshTree, onActionComplete }) => {
   const [success, setSuccess] = useState('');
   const fileInputRef = useRef(null);
 
-  const apiBase = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+  const apiBase = import.meta.env.VITE_API_URL || (import.meta.env.PROD ? '' : 'http://localhost:5000');
 
   // Determine active branch context
   const activeBranchId = selectedNode?.type === 'branch' ? selectedNode.id : '';

@@ -16,7 +16,7 @@ const PDFViewer = () => {
   const examName = location.state?.examName || 'TS STATE';
   const branchName = location.state?.branchName || 'Branch';
 
-  const apiBase = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+  const apiBase = import.meta.env.VITE_API_URL || (import.meta.env.PROD ? '' : 'http://localhost:5000');
   const pdfStreamUrl = `${apiBase}/api/pdf/${branchId}`;
 
   const handleDownload = async () => {

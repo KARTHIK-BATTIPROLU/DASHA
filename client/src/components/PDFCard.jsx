@@ -5,7 +5,7 @@ import axios from 'axios';
 const PDFCard = ({ branch, collegeName, examName }) => {
   const navigate = useNavigate();
   const [downloading, setDownloading] = useState(false);
-  const apiBase = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+  const apiBase = import.meta.env.VITE_API_URL || (import.meta.env.PROD ? '' : 'http://localhost:5000');
 
   const handleDownload = async (e) => {
     e.stopPropagation(); // Avoid triggering card view route

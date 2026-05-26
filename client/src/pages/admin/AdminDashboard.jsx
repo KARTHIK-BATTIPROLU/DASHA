@@ -14,7 +14,7 @@ const AdminDashboard = () => {
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  const apiBase = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+  const apiBase = import.meta.env.VITE_API_URL || (import.meta.env.PROD ? '' : 'http://localhost:5000');
 
   const fetchStructure = async () => {
     const token = localStorage.getItem('adminToken');

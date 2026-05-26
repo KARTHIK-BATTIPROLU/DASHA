@@ -10,7 +10,7 @@ const ManageColleges = ({ selectedNode, refreshTree, onActionComplete }) => {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
 
-  const apiBase = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+  const apiBase = import.meta.env.VITE_API_URL || (import.meta.env.PROD ? '' : 'http://localhost:5000');
 
   // Determine active exam context
   const activeExam = selectedNode?.type === 'exam' 
