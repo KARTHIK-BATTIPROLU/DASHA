@@ -1,10 +1,9 @@
 {
   "version": 2,
-  "framework": "vite",
   "builds": [
     {
       "src": "client/package.json",
-      "use": "@vercel/vite"
+      "use": "@vercel/static-build"
     },
     {
       "src": "server/index.js",
