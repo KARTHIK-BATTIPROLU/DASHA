@@ -1,8 +1,10 @@
 const serverless = require('serverless-http');
 const app = require('../index.js');
 
-// Wrap the Express app
-const handler = serverless(app);
+// Wrap the Express app and configure binary media types for PDF rendering
+const handler = serverless(app, {
+  binary: ['application/pdf', 'application/octet-stream']
+});
 
 module.exports.handler = async (event, context) => {
   // Netlify routes paths to `/.netlify/functions/api/...`
