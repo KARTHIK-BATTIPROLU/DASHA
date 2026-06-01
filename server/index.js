@@ -18,6 +18,7 @@ app.use(express.urlencoded({ extended: true }));
 // Serve API Routes
 app.use('/api', require('./routes/public'));
 app.use('/api/admin', require('./routes/admin'));
+app.use('/api/student', require('./routes/students'));
 
 // Base Health-Check Route
 app.get('/', (req, res) => {

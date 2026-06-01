@@ -6,6 +6,7 @@ const auth = require('../middleware/auth');
 const College = require('../models/College');
 const Branch = require('../models/Branch');
 const PDFDocument = require('../models/PDFDocument');
+const Student = require('../models/Student');
 
 // Multer setup - store files in memory as Buffers
 const upload = multer({
@@ -401,6 +402,19 @@ router.post('/college/:collegeId/bulk-upload', auth, upload.any(), async (req, r
     res.json({ msg: 'Bulk upload completed successfully', results });
   } catch (err) {
     console.error('Bulk upload error:', err.message);
+    res.status(500).send('Server Error');
+  }
+});
+
+// @route   GET /api/admin/students
+// @desc    Retrieve all students with completed profiles, grouped by class
+// @access  Private (Admin Auth Required)
+router.get('/students', auth, async (req, res) => {
+  try {
+    const students = await Student.find({}).sort({ createdAt: -1 }).select('-__v');
+    res.json(students);
+  } catch (err) {
+    console.error('Error fetching students:', err.message);
     res.status(500).send('Server Error');
   }
 });

@@ -5,11 +5,12 @@ import StructureTree from '../../components/StructureTree';
 import ManageColleges from './ManageColleges';
 import ManageBranches from './ManageBranches';
 import UploadPDF from './UploadPDF';
+import StudentData from './StudentData';
 
 const AdminDashboard = () => {
   const [treeData, setTreeData] = useState([]);
   const [selectedNode, setSelectedNode] = useState(null);
-  const [activeTab, setActiveTab] = useState('colleges'); // 'colleges' | 'branches' | 'pdfs'
+  const [activeTab, setActiveTab] = useState('colleges'); // 'colleges' | 'branches' | 'pdfs' | 'students'
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const navigate = useNavigate();
@@ -150,11 +151,17 @@ const AdminDashboard = () => {
             >
               Branches CRUD
             </button>
-            <button 
+            <button
               className={`workspace-tab-btn ${activeTab === 'pdfs' ? 'active' : ''}`}
               onClick={() => setActiveTab('pdfs')}
             >
               Allotment PDFs
+            </button>
+            <button
+              className={`workspace-tab-btn ${activeTab === 'students' ? 'active' : ''}`}
+              onClick={() => setActiveTab('students')}
+            >
+              Student Data
             </button>
           </div>
 
@@ -176,11 +183,15 @@ const AdminDashboard = () => {
             )}
 
             {activeTab === 'pdfs' && (
-              <UploadPDF 
-                selectedNode={selectedNode} 
+              <UploadPDF
+                selectedNode={selectedNode}
                 refreshTree={fetchStructure}
                 onActionComplete={handleActionComplete}
               />
+            )}
+
+            {activeTab === 'students' && (
+              <StudentData />
             )}
           </div>
         </div>
